@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -31,11 +32,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+   int ballNumber = 2;
 
-  void _incrementCounter() {
+  void generateRandomNumber() {
     setState(() {
-      _counter++;
+      ballNumber = Random().nextInt(5)+1;
     });
   }
 
@@ -51,10 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(
-              image: AssetImage('images/ball1.png'),
+            Expanded(
+              child: TextButton(
+                onPressed: generateRandomNumber,
+                child: Image.asset('images/ball$ballNumber.png'),
+              ),
             ),
-
           ],
         ),
       ),
